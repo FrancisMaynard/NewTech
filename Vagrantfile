@@ -18,6 +18,7 @@ Vagrant.configure("2") do |config|
       vb.memory = "4048"
       vb.cpus = "2"
    end
+   httpd.vm.provision "shell", path: "httpd.sh"
   end
 
   config.vm.define "db" do |db|
@@ -28,6 +29,7 @@ Vagrant.configure("2") do |config|
       vb.memory = "4048"
       vb.cpus = "2"
    end
+   db.vm.provision "shell", path: "db.sh"
   end
 end
 
