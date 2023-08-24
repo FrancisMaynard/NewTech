@@ -1,0 +1,11 @@
+#!/usr/bin/expect
+
+set timeout 120
+set remote_host [lindex $argv 0]
+
+spawn ssh-copy-id vagrant@$remote_host
+expect "[fingerprint])?"
+send "yes"
+expect "vagrant@$remote_host's password:"
+send "vagrant"
+expect eof

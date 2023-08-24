@@ -6,19 +6,28 @@
 # backwards compatibility). Please don't change it unless you know what
 # you're doing.
 Vagrant.configure("2") do |config|
-  # The most common configuration options are documented and commented below.
-  # For a complete reference, please see the online documentation at
-  # https://docs.vagrantup.com.
+
+  config.vm.define "ansible" do | ansible |
+    ansible.vm.box = "jaca1805/debian12"
+    ansible.vm.network "private_network", ip: "192.168.33.5"
+
+    ansible.vm.provider "virtualbox" do |vb|
+      vb.memory = "1048"
+      vb.cpus = "2"
+   end
+   ansible.vm.provision "shell", path: "ansible.sh"
+   ansible.vm.synced_folder "./config", "/home/vagrant/config"
+  end
 
   config.vm.define "httpd" do | httpd |
     httpd.vm.box = "jaca1805/debian12"
     httpd.vm.network "private_network", ip: "192.168.33.10"
 
     httpd.vm.provider "virtualbox" do |vb|
-      vb.memory = "4048"
+      vb.memory = "1048"
       vb.cpus = "2"
    end
-   httpd.vm.provision "shell", path: "httpd.sh"
+  #  httpd.vm.provision "shell", path: "httpd.sh"
   end
 
   config.vm.define "db" do |db|
@@ -26,11 +35,12 @@ Vagrant.configure("2") do |config|
     db.vm.network "private_network", ip: "192.168.33.11"
 
     db.vm.provider "virtualbox" do |vb|
-      vb.memory = "4048"
+      vb.memory = "1048"
       vb.cpus = "2"
    end
-   db.vm.provision "shell", path: "db.sh"
+  #  db.vm.provision "shell", path: "db.sh"
   end
+
 end
 
 
