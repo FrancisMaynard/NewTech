@@ -1,0 +1,6 @@
+#!/bin/bash
+
+ssh-keygen -t rsa -C "{{newClient}}@gmail.com" -N "" -f ~/.ssh/id_rsa
+ssh-copy-id vagrant@192.168.33.{{ip1}}
+ssh-copy-id vagrant@192.168.33.{{ip2}}
+ssh-copy-id vagrant@192.168.33.{{ip3}}

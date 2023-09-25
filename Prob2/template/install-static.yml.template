@@ -1,0 +1,12 @@
+name: Install and configure static server
+  hosts: 192.168.33.{{ip1}}
+  become: yes
+
+  tasks:
+    - name: Install Apache2
+      apt:
+        name: apache2
+        state: present
+      when: ansible_os_family == 'Debian'
+
+      //insert newClient.html and style.css files

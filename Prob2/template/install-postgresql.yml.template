@@ -1,0 +1,32 @@
+- name: Install PostgreSQL and Create Database for {{newClient}} with Password
+- hosts: 192.168.33.{{ip3}}
+  become: yes
+
+  tasks:
+
+    - name: Update apt package lists (for Ubuntu)
+      apt:
+        update_cache: yes
+
+    - name: Install PostgreSQL
+      apt:
+        name: postgresql
+        state: present
+    
+    - name: Ensure PostgreSQL service is running
+      systemd:
+        name: postgresql
+        enabled: yes
+        state: started
+
+    - name: Create PostgreSQL database for {{newClient}}
+      become: yes
+      become_user: postgres
+      postgresql_user:
+        state: present
+        name: "{{ db_user }}"
+        password: "{{ db_password }}"
+
+
+
+ 

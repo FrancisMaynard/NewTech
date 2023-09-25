@@ -1,0 +1,5 @@
+#!/bin/bash
+
+ansible-playbook -i /home/vagrant/config/ansible/hosts/home/vagrant/config/{{newClient}}/install-static.yml
+ansible-playbook -i /home/vagrant/config/ansible/hosts/home/vagrant/config/{{newClient}}/install-httpd.yml
+ansible-playbook -i /home/vagrant/config/ansible/hosts/home/vagrant/config/{{newClient}}/install-postgresql.yml
