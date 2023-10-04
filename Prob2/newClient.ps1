@@ -29,5 +29,17 @@ az network nsg rule create `
     --destination-port-range 80 `
     --access Allow
 
+az network nsg rule create `
+    --resource-group $ressourceGroupName `
+    --nsg-name $vmName"NSG" `
+    --name Allow_HTTPS `
+    --priority 101 `
+    --protocol Tcp `
+    --direction Inbound `
+    --source-address-prefix '*' `
+    --source-port-range '*' `
+    --destination-address-prefix '*' `
+    --destination-port-range 443 `
+    --access Allow
 
 Write-Host "VM créé"
